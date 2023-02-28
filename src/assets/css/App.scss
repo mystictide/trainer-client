@@ -1,0 +1,607 @@
+@import "./normalize.css";
+
+@font-face {
+    font-family: "Montserrat Light";
+    src: local("Montserrat-Light"), url("../fonts/Montserrat/Montserrat-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Montserrat Regular";
+    src: local("Montserrat-Regular"), url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Montserrat Bold";
+    src: local("Montserrat-Bold"), url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+}
+
+$font-light: "Montserrat Light", sans-serif;
+$font-mont: "Montserrat Regular", sans-serif;
+$font-bold: "Montserrat Bold", sans-serif;
+$font-sans: sans-serif;
+
+$bg-main: #ffffffe5;
+$bg-dark: #1a191991;
+$bg-light: #c0c0c048;
+$color-flavour: #fcbf86;
+$font-main: #f2e5e5;
+$font-lighter: #f0f8ff;
+
+@mixin bg-gradient {
+    background-repeat-x: repeat;
+    background-repeat-y: no-repeat;
+    background-color: $bg-dark;
+    background-image: linear-gradient(180deg, $bg-dark 0, $bg-light 75px, $bg-dark 250px);
+    background-position: 0 0;
+}
+
+@mixin transition {
+    transition: all 0.35s ease;
+    -webkit-transition: all 0.35s ease;
+}
+
+@mixin button-hover-bg-color {
+    &:hover {
+        opacity: 1;
+        background-color: lighten($color-flavour, 5);
+        color: $bg-main;
+        @include transition();
+    }
+}
+
+@mixin anchor-hover-bg-color {
+    &:hover {
+        opacity: 1;
+        background-color: lighten($color-flavour, 5);
+        color: $bg-main;
+        @include transition();
+    }
+}
+
+@mixin button-hover-color {
+    &:hover {
+        opacity: 1;
+        color: lighten($color-flavour, 20);
+        @include transition();
+        cursor: pointer;
+    }
+}
+
+@mixin anchor-hover-color {
+    &:hover {
+        opacity: 1;
+        color: lighten($color-flavour, 20);
+        @include transition();
+        cursor: pointer;
+    }
+}
+
+@mixin no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin button-reset {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+@mixin border-shadow {
+    -webkit-box-shadow: 0 4px 6px -6px $bg-main;
+    -moz-box-shadow: 0 4px 6px -6px $bg-main;
+    box-shadow: 0 4px 6px -6px $bg-main;
+}
+
+@mixin text-shadow {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    color: $color-flavour;
+    font-family: $font-mont;
+    @include bg-gradient();
+}
+
+.maxheight {
+    height: 100%;
+}
+
+.v-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.h-items {
+    display: flex;
+    flex-direction: row;
+}
+
+.v-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    li {
+        display: block;
+    }
+}
+
+.h-list {
+    display: flex;
+    align-items: center;
+    li {
+        display: inline-block;
+    }
+}
+
+.c-gap-5 {
+    column-gap: 5px;
+}
+
+.c-gap-10 {
+    column-gap: 10px;
+}
+
+.r-gap-5 {
+    row-gap: 5px;
+}
+
+.r-gap-10 {
+    row-gap: 10px;
+}
+
+.t-margin-1 {
+    margin-top: 1rem;
+}
+
+.t-margin-5 {
+    margin-top: 0.5rem;
+}
+
+input {
+    outline: none;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type="password"] {
+    &:focus {
+        font-family: Verdana;
+        letter-spacing: 0.1em;
+    }
+}
+
+textarea {
+    @extend input;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+button {
+    background: none;
+    color: $font-main;
+    border: none;
+    outline: inherit;
+    opacity: 1;
+    @include transition();
+    @include button-hover-color();
+}
+
+.main-border {
+    border: 1px solid rgba($color-flavour, 0.1);
+    border-radius: 3px;
+    @include transition();
+    &:hover {
+        @include transition();
+        border: 1px solid rgba($color-flavour, 0.5);
+    }
+}
+
+.btn-regular {
+    @extend .main-border;
+    background: $bg-light;
+    font-size: 0.8rem;
+    padding: 9px 12px;
+}
+
+.btn-function {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    background: $color-flavour;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    @include button-hover-bg-color();
+}
+
+.btn-edit {
+    display: inline-block;
+    border-radius: 3px;
+    color: #15e29e;
+    font-size: 1.3rem;
+    @include button-hover-color();
+}
+
+.btn-remove {
+    display: inline-block;
+    border-radius: 3px;
+    color: #a94127;
+    font-size: 1.3rem;
+    @include button-hover-color();
+}
+
+a {
+    color: $font-lighter;
+    text-decoration: none;
+    @include transition();
+    @include anchor-hover-color();
+}
+
+.error {
+    color: #e47433;
+}
+
+.success {
+    color: #00d394;
+}
+
+.page-container {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+
+    .select {
+        color: $bg-dark;
+    }
+
+    .seperator {
+        display: block;
+        width: 100%;
+        height: 4px;
+        opacity: 0.8;
+        background-color: $color-flavour;
+    }
+
+    .seperator.half {
+        height: 1px;
+        opacity: 0.6;
+        background-color: $color-flavour;
+    }
+
+    header {
+        height: 60px;
+        background-color: $bg-dark;
+        z-index: 777;
+        @include no-select();
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        nav {
+            margin: 0 auto;
+            height: 60px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                font-size: 1.8rem;
+                font-family: $font-bold;
+                opacity: 0.8;
+                &:hover {
+                    opacity: 1;
+                    text-shadow: 0 0 15px $color-flavour;
+                }
+            }
+        }
+    }
+
+    .section-header {
+        @include bg-gradient();
+        @include no-select();
+        color: $bg-main;
+        padding: 1rem;
+        border-radius: 3px;
+    }
+
+    .section-functions {
+        @include no-select();
+        color: $bg-main;
+        border-radius: 3px;
+    }
+
+    .main {
+        min-height: 650px;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .content {
+            display: block;
+
+            .loading {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                min-height: 35vh;
+            }
+
+            .multi {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+            }
+
+            .single {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .anatomy {
+                position: relative;
+                h2 {
+                    max-width: 170px;
+                    position: absolute;
+                    margin-left: auto;
+                    margin-right: auto;
+                    top: 20%;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
+                }
+                .anatomy-body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    svg {
+                        padding: 15px 0;
+
+                        [data-part="Arms"],
+                        [data-part="Hamstrings"],
+                        [data-part="Triceps"],
+                        [data-part="LBack"],
+                        [data-part="Back"],
+                        [data-part="Glutes"],
+                        [data-part="Shins"],
+                        [data-part="Calves"],
+                        [data-part="Shoulders"],
+                        [data-part="Quads"],
+                        [data-part="Core"],
+                        [data-part="Biceps"],
+                        [data-part="Chest"] {
+                            @include transition();
+                            &:hover {
+                                cursor: pointer;
+                                path {
+                                    @include transition();
+                                    fill: darken($color-flavour, 45) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .header {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            min-height: 350px;
+        }
+    }
+
+    footer {
+        padding-bottom: 35px;
+        background-color: $bg-light;
+
+        .footer-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin: 0 auto;
+            padding: 32px 0;
+
+            .footer-nav {
+                margin-bottom: 1em;
+                ul {
+                    margin-bottom: 0;
+                    overflow: hidden;
+                    li {
+                        color: $font-main;
+                        display: inline-block;
+                        margin-right: 1em;
+                        font-family: $font-bold;
+                        font-size: 0.95rem;
+                    }
+                }
+            }
+            .socials {
+                ul {
+                    li {
+                        display: inline-block;
+                        margin-right: 0.6em;
+                        a {
+                            font-size: 1.2rem;
+                            opacity: 0.5;
+                            cursor: pointer;
+                            @include transition();
+                            &:hover {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+            .copyright {
+                display: flex;
+                width: 100%;
+                opacity: 0.5;
+                padding-top: 10px;
+                font-family: $font-light;
+                align-items: center;
+                svg {
+                    color: $color-flavour;
+                    font-size: 0.85rem;
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+}
+
+.modal-container {
+    min-height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 23128;
+    .modal-overlay {
+        width: 100%;
+        min-height: 100vh;
+        cursor: auto;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyAQMAAAAk8RryAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP/AOW3MEoAAAAOSURBVBiVY2AYBYMJAAABkAAB2POVPwAAAABJRU5ErkJggg==)
+            repeat 0 0;
+        opacity: 0.4;
+    }
+
+    .modal-content {
+        position: absolute;
+        background: $bg-light;
+        border-radius: 5px;
+        min-width: 400px;
+        padding: 1.7rem 2.5rem;
+        z-index: 9;
+        color: $font-lighter;
+        border: 1px solid rgba($color-flavour, 0.5);
+
+        .heading {
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            svg {
+                font-size: 1.8rem;
+                color: $font-light;
+                opacity: 0.6;
+                &:hover {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.pager-container {
+    display: block;
+    width: 100%;
+    .pager-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-top: 15px;
+        column-gap: 5px;
+        .pager-item {
+            .pager-button {
+                align-self: center;
+                border: none;
+                background: $bg-main;
+                padding: 10px 15px;
+                border-radius: 5px;
+                color: $font-main;
+                svg {
+                    font-size: 2rem;
+                }
+                @include transition();
+                &:hover {
+                    cursor: pointer;
+                    color: $font-lighter;
+                    background: $bg-light;
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1041px) {
+    .content-wrapper {
+        width: 950px;
+        .h-items {
+            flex-direction: row;
+            .multi {
+                width: 50% !important;
+            }
+        }
+    }
+    .page-container .main .content .anatomy svg {
+        width: 75%;
+    }
+}
+
+@media (max-width: 1040px) {
+    .content-wrapper {
+        width: 85%;
+        .h-items {
+            flex-direction: column;
+            .multi {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .page-container .main .content .anatomy svg {
+        width: 100%;
+    }
+}
+
+@media (max-width: 740px) {
+    .content-wrapper {
+        width: 75%;
+        .h-items {
+            flex-direction: column;
+            .multi {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .page-container .main .content .anatomy svg {
+        width: 100%;
+    }
+}
