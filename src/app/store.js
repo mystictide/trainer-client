@@ -1,14 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../features/auth/authSlice";
-import validationReducer from "../features/auth/validationSlice";
+import cmsReducer from "../features/cms/cmsSlice";
 import modalReducer from "../features/helpers/modalSlice";
 import mainReducer from "../features/main/mainSlice";
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
     main: mainReducer,
+    cms: cmsReducer,
     modals: modalReducer,
-    validation: validationReducer,
   },
 });

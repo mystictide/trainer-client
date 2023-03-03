@@ -199,7 +199,7 @@ textarea {
 
 button {
     background: none;
-    color: $font-main;
+    color: $font-lighter;
     border: none;
     outline: inherit;
     opacity: 1;
@@ -409,12 +409,24 @@ a {
             }
         }
 
+        .cms.login {
+            margin: 0 auto;
+            text-align: center;
+            width: 50%;
+        }
+
         .header {
             overflow: hidden;
             position: relative;
             width: 100%;
             min-height: 350px;
         }
+    }
+
+    .main.cms {
+        display: flex;
+        align-items: flex-start;
+        padding-top: 45px;
     }
 
     footer {
@@ -494,7 +506,7 @@ a {
         cursor: auto;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyAQMAAAAk8RryAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP/AOW3MEoAAAAOSURBVBiVY2AYBYMJAAABkAAB2POVPwAAAABJRU5ErkJggg==)
             repeat 0 0;
-        opacity: 0.4;
+        opacity: 0.7;
     }
 
     .modal-content {

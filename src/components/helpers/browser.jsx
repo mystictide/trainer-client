@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import {
   FilteredListing,
@@ -12,12 +12,10 @@ import ListingBoxes from "../listing/listingboxes";
 import Pager from "./pager";
 import Search from "./search";
 
-function Browser({ self, param }) {
+function Browser() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
 
-  const [keyword, setKeyword] = useState(self ? "" : param);
   const [filter, setFilterModel] = useState(null);
   const { user } = useSelector((state) => state.auth);
   const { browser, isLoading, isSuccess } = useSelector(

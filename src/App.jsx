@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/footer";
 import Header from "./components/header";
+import CMS from "./pages/cms";
 import Home from "./pages/main/home";
 
 function App() {
@@ -11,11 +12,10 @@ function App() {
       <Router>
         <div className="page-container">
           <Header />
-          <div id="main" className="main">
-            <Routes>
-              <Route path="/" element={<Home />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cms" element={<CMS />} />
+          </Routes>
           <Footer />
         </div>
       </Router>
