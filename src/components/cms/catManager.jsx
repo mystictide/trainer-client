@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { manageCategory } from "../../features/cms/cmsSlice";
 
 function CatManager({ data, modalControl }) {
   const dispatch = useDispatch();
-  const { isSuccess, isError } = useSelector((state) => state.cms);
   const [formData, setFormData] = useState({
     id: data ? data.ID : "",
     name: "",
@@ -13,22 +13,14 @@ function CatManager({ data, modalControl }) {
 
   const { name } = formData;
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success(message);
-      modalControl(false);
-    }
-    if (isError) {
-      toast.error(message);
-    }
-  }, [setFormData, dispatch]);
-
   const onSubmit = (e) => {
     e.preventDefault();
     const reqData = { id: data ? data.ID : null, name };
     if (name != "") {
-      dispatch(manage(reqData));
+      dispatch(manageCategory(reqData));
+      modalControl(false);
     } else {
+      modalControl(false);
       toast.error("Please fill all the necessary properties.");
     }
   };

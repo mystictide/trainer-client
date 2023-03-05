@@ -2,12 +2,14 @@ import axios from "axios";
 import { storeWithDate } from "../../assets/js/helpers";
 
 const API_URL = "https://localhost:475/cms/";
+const secret = import.meta.env.VITE_SECRET;
 
 const getCategories = async () => {
   var config = {
     method: "get",
     url: API_URL + "get/categories",
     headers: {
+      Authorization: "Bearer " + secret,
       "Content-Type": "application/json",
     },
   };
@@ -32,7 +34,7 @@ const filterExercises = async (reqData) => {
       Authorization: "Bearer " + reqData.secret,
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(reqData),
+    data: JSON.stringify(reqData.categoryID),
   };
 
   var data = await axios(config)
@@ -52,10 +54,10 @@ const manageExercise = async (reqData) => {
     method: "post",
     url: API_URL + "manage/exercise",
     headers: {
-      Authorization: "Bearer " + reqData.secret,
+      Authorization: "Bearer " + secret,
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(reqData.model),
+    data: JSON.stringify(reqData),
   };
 
   var data = await axios(config)
@@ -74,10 +76,32 @@ const manageCategory = async (reqData) => {
     method: "post",
     url: API_URL + "manage/category",
     headers: {
-      Authorization: "Bearer " + reqData.secret,
+      Authorization: "Bearer " + secret,
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(reqData.model),
+    data: JSON.stringify(reqData),
+  };
+
+  var data = await axios(config)
+    .then(function (response) {
+      storeWithDate("categories", JSON.stringify(response.data), 1);
+      return response.data;
+    })
+    .catch(function (error) {
+      return { data: error.response.data, status: error.response.status };
+    });
+
+  return data;
+};
+
+const exercisesByCategory = async (reqData) => {
+  var config = {
+    method: "get",
+    url: API_URL + "get/exercises?category=" + reqData.category,
+    headers: {
+      Authorization: "Bearer " + secret,
+      "Content-Type": "application/json",
+    },
   };
 
   var data = await axios(config)
@@ -95,7 +119,8 @@ const cmsService = {
   getCategories,
   filterExercises,
   manageExercise,
-  manageCategory
+  manageCategory,
+  exercisesByCategory,
 };
 
 export default cmsService;

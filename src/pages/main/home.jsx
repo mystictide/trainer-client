@@ -1,25 +1,35 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Browser from "../../components/helpers/browser";
 import Anatomy from "../../components/main/anatomy";
 
 function Home() {
+  const dispatch = useDispatch();
   const [bodyPart, setBodyPart] = useState(null);
+  const { exercises } = useSelector((state) => state.cms);
 
   const setPart = (e) => {
     setBodyPart(e);
   };
 
   useEffect(() => {
-      console.log(import.meta.env.VITE_SECRET)
-  }, [])
-  
+    if (bodyPart) {
+      const reqData = { category: bodyPart };
+      dispatch(exercisesByCategory(reqData));
+    }
+  }, [bodyPart, dispatch]);
 
   return (
     <div className="main">
       <section className="content content-wrapper">
-        <div className="anatomy">
-          <h2>{bodyPart ? bodyPart.toUpperCase() : ""}</h2>
-          <Anatomy func={setPart} />
-        </div>
+        {exercises ? (
+          <Browser data={exercises} />
+        ) : (
+          <div className="anatomy">
+            <h2>{bodyPart ? bodyPart.toUpperCase() : ""}</h2>
+            <Anatomy func={setPart} />
+          </div>
+        )}
       </section>
     </div>
   );

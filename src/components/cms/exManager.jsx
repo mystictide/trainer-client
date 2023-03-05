@@ -1,34 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
+import { manageExercise } from "../../features/cms/cmsSlice";
 
 function ExManager({ data, modalControl }) {
   const dispatch = useDispatch();
-  const { isSuccess, isError } = useSelector((state) => state.cms);
   const [formData, setFormData] = useState({
     id: data ? data.ID : "",
-    name: "",
-    type: "",
-    previewurl: "",
-    videourl: "",
+    name: data ? data.Name : "",
+    type: data ? data.Type : "",
+    previewurl: data ? data.PreviewURL : "",
+    videourl: data ? data.VideoURL : "",
   });
 
   const { cats } = useSelector((state) => state.cms);
   const [cat, setCats] = useState(data ? data.Categories : "");
   const catOptions = useMemo(() => cats, []);
   const { name, type, previewurl, videourl } = formData;
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success(message);
-      modalControl(false);
-    }
-    if (isError) {
-      toast.error(message);
-    }
-  }, [setFormData, dispatch]);
 
   const onCatChange = (value) => {
     setCats(value);
@@ -42,10 +32,13 @@ function ExManager({ data, modalControl }) {
       type,
       previewurl,
       videourl,
+      categories: cat,
     };
     if (name != "" && type != "" && previewurl != "" && videourl != "") {
-      dispatch(manage(reqData));
+      dispatch(manageExercise(reqData));
+      modalControl(false);
     } else {
+      modalControl(false);
       toast.error("Please fill all the necessary properties.");
     }
   };
@@ -87,7 +80,7 @@ function ExManager({ data, modalControl }) {
               name="cats"
               placeholder={"select categories"}
               options={catOptions}
-              getOptionLabel={(options) => options["name"]}
+              getOptionLabel={(options) => options["Name"]}
               getOptionValue={(options) => options["ID"]}
               value={cat ? cat : data ? data.Categories : ""}
               onChange={onCatChange}

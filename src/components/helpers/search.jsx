@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 import Select from "react-select";
 
 function Search({ setFilter, setKeyword, keyword }) {
-  const { filteredData } = useSelector((state) => state.cms);
-  const { categories } = { test: 1, test2: 2 };
-  const categoryOptions = useMemo(() => categories, []);
+  const { filteredData, cats } = useSelector((state) => state.cms);
+  const categoryOptions = useMemo(() => cats, []);
 
   const [category, setCategories] = useState(
     filteredData.filterModel.Category ? filteredData.filterModel.Category : ""
@@ -32,7 +31,7 @@ function Search({ setFilter, setKeyword, keyword }) {
         name="category"
         placeholder={"select categories"}
         options={categoryOptions}
-        getOptionLabel={(options) => options["name"]}
+        getOptionLabel={(options) => options["Name"]}
         getOptionValue={(options) => options["ID"]}
         value={category}
         onChange={onCategoryChange}
