@@ -9,15 +9,16 @@ function Search({ setFilter, setKeyword, keyword }) {
   const [category, setCategories] = useState(
     filteredData.filterModel.Category ? filteredData.filterModel.Category : ""
   );
+
   const [filterModel, setFilterModel] = useState({
-    categories: category,
+    category: category,
   });
 
   const onCategoryChange = (value) => {
     setCategories(value);
     setFilterModel((prevState) => ({
       ...prevState,
-      categories: value,
+      category: value,
     }));
   };
 
@@ -25,7 +26,6 @@ function Search({ setFilter, setKeyword, keyword }) {
     <div className="v-items c-gap-10 r-gap-10">
       <label>Categories</label>
       <Select
-        isMulti
         className="select"
         id="category"
         name="category"
@@ -36,7 +36,7 @@ function Search({ setFilter, setKeyword, keyword }) {
         value={category}
         onChange={onCategoryChange}
       />
-      <input
+      {/* <input
         type="text"
         id="keyword"
         name="keyword"
@@ -44,7 +44,7 @@ function Search({ setFilter, setKeyword, keyword }) {
         placeholder={"search by name.."}
         className="main-border"
         onChange={(e) => setKeyword(e.target.value)}
-      />
+      /> */}
       <button
         className="btn-function"
         onClick={(e) => setFilter(e, 1, filterModel)}

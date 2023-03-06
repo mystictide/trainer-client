@@ -1,19 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import mainService from "./mainService";
 
-const artists = JSON.parse(localStorage.getItem("artists"));
-
 const initialState = {
+  exercises: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
 };
 
-export const getArtists = createAsyncThunk(
-  "main/getArtists",
-  async (thunkAPI) => {
+export const exercisesByCategory = createAsyncThunk(
+  "main/exercisesByCategory",
+  async (reqData, thunkAPI) => {
     try {
-      const response = await mainService.getArtists();
+      const response = await mainService.exercisesByCategory(reqData);
       if (response.status === 500) {
         return thunkAPI.rejectWithValue(response);
       }
@@ -38,25 +37,26 @@ export const mainSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
-      state.artists = null;
+      state.exercises = null;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getArtists.pending, (state) => {
+      .addCase(exercisesByCategory.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getArtists.fulfilled, (state, action) => {
+      .addCase(exercisesByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.artists = action.payload;
+        state.exercises = action.payload;
       })
-      .addCase(getArtists.rejected, (state, action) => {
+      .addCase(exercisesByCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.artists = null;
+        state.message = null;
+        state.exercises = null;
       });
   },
 });

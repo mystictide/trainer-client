@@ -8,7 +8,6 @@ const categories = JSON.parse(getWithDate("categories"));
 const initialState = {
   filteredData: filteredData ? filteredData : null,
   cats: categories ? categories : null,
-  exercises: null,
   exercise: null,
   isError: false,
   isSuccess: false,
@@ -84,27 +83,6 @@ export const manageCategory = createAsyncThunk(
   async (reqData, thunkAPI) => {
     try {
       const response = await cmsService.manageCategory(reqData);
-      if (response.status === 500) {
-        return thunkAPI.rejectWithValue(response);
-      }
-      return response;
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const exercisesByCategory = createAsyncThunk(
-  "cms/exercisesByCategory",
-  async (reqData, thunkAPI) => {
-    try {
-      const response = await cmsService.exercisesByCategory(reqData);
       if (response.status === 500) {
         return thunkAPI.rejectWithValue(response);
       }
@@ -197,22 +175,6 @@ export const cmsSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message = null;
-      })
-      .addCase(exercisesByCategory.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(exercisesByCategory.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.isSuccess = true;
-        state.exercises = action.payload;
-      })
-      .addCase(exercisesByCategory.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = false;
-        state.isError = true;
-        state.message = null;
-        state.exercises = null;
       });
   },
 });

@@ -5,7 +5,7 @@ import CMSLogin from "../components/cms/cmsLogin";
 
 function CMS() {
   const dispatch = useDispatch();
-  const { filteredData } = useSelector((state) => state.cms);
+  const { filteredData, isError } = useSelector((state) => state.cms);
   const [data, setData] = useState(filteredData ? filteredData : null);
 
   return (

@@ -10,6 +10,7 @@ import ExManager from "./exManager";
 function CMSBrowser({ filteredData }) {
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
+  const [category, setCategory] = useState(0);
   const [filter, setFilterModel] = useState(null);
   const [catModal, setCatModal] = useState(false);
   const [exModal, setExModal] = useState(false);
@@ -17,12 +18,10 @@ function CMSBrowser({ filteredData }) {
 
   const setFilter = (e, page, filter) => {
     setFilterModel(filter);
-    let reqData = "";
-    if (filter) {
-      reqData = { keyword: keyword, page: page, filterModel: filter };
-    } else {
-      reqData = { keyword: keyword, page: page };
-    }
+    const reqData = {
+      handle: true,
+      filter: { Keyword: keyword, page: page, CategoryID: filter.category.ID },
+    };
     dispatch(filterExercises(reqData));
   };
 
@@ -34,7 +33,9 @@ function CMSBrowser({ filteredData }) {
             <Search
               setFilter={setFilter}
               setKeyword={setKeyword}
+              setCategory={setCategory}
               keyword={keyword}
+              category={category}
             />
           ) : (
             ""

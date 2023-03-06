@@ -27,16 +27,16 @@ const getCategories = async () => {
 };
 
 const filterExercises = async (reqData) => {
+  const secretHandle = reqData.handle ? secret : reqData.secret;
   var config = {
     method: "post",
     url: API_URL + "filter/exercises",
     headers: {
-      Authorization: "Bearer " + reqData.secret,
+      Authorization: "Bearer " + secretHandle,
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(reqData.categoryID),
+    data: JSON.stringify(reqData.filter),
   };
-
   var data = await axios(config)
     .then(function (response) {
       storeWithDate("filteredExercises", JSON.stringify(response.data), 1);
@@ -94,33 +94,11 @@ const manageCategory = async (reqData) => {
   return data;
 };
 
-const exercisesByCategory = async (reqData) => {
-  var config = {
-    method: "get",
-    url: API_URL + "get/exercises?category=" + reqData.category,
-    headers: {
-      Authorization: "Bearer " + secret,
-      "Content-Type": "application/json",
-    },
-  };
-
-  var data = await axios(config)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      return { data: error.response.data, status: error.response.status };
-    });
-
-  return data;
-};
-
 const cmsService = {
   getCategories,
   filterExercises,
   manageExercise,
   manageCategory,
-  exercisesByCategory,
 };
 
 export default cmsService;

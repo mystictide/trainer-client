@@ -1,20 +1,20 @@
 import axios from "axios";
-import { storeWithDate } from "../../assets/js/helpers";
 
 const API_URL = "https://localhost:475/main/";
-const headers = {
-  "Content-Type": "application/json",
-};
-const getArtists = async () => {
+const secret = import.meta.env.VITE_SECRET;
+
+const exercisesByCategory = async (reqData) => {
   var config = {
     method: "get",
-    url: API_URL + "get/artists",
-    headers: headers,
+    url: API_URL + "get/exercises?category=" + reqData.category,
+    headers: {
+      Authorization: "Bearer " + secret,
+      "Content-Type": "application/json",
+    },
   };
 
   var data = await axios(config)
     .then(function (response) {
-      storeWithDate("artists", JSON.stringify(response.data), 7);
       return response.data;
     })
     .catch(function (error) {
@@ -25,7 +25,7 @@ const getArtists = async () => {
 };
 
 const mainService = {
-  getArtists,
+  exercisesByCategory,
 };
 
 export default mainService;

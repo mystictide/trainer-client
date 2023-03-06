@@ -19,7 +19,11 @@ function CMSLogin() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const reqData = { secret: secret, categoryID: 0 };
+    const reqData = {
+      handle: false,
+      secret: secret,
+      filter: { CategoryID: 0 },
+    };
     dispatch(filterExercises(reqData));
     dispatch(getCategories());
   };
