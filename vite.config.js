@@ -4,6 +4,6 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/trainer-client',
+  base: '/trainer-client/',
   plugins: [react(), svgr()],
 });
