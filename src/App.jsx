@@ -9,7 +9,7 @@ import Home from "./pages/main/home";
 function App() {
   return (
     <>
-      <Router basename='/trainer-client'>
+      <Router basename='/'>
         <div className="page-container">
           <Header />
           <Routes>
