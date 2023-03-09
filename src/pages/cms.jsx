@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CMSBrowser from "../components/cms/cmsbrowser";
+import CMSBrowser from "../components/cms/cmsBrowser";
 import CMSLogin from "../components/cms/cmsLogin";
 
 function CMS() {
