@@ -339,6 +339,7 @@ a {
 
     .main {
         min-height: 650px;
+        padding-bottom: 2rem;
         height: 100%;
         background-color: #fff;
         display: flex;
@@ -367,6 +368,7 @@ a {
             }
 
             .anatomy {
+                height: 100%;
                 position: relative;
                 h2 {
                     max-width: 170px;
@@ -382,6 +384,7 @@ a {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    height: 100%;
 
                     svg {
                         padding: 15px 0;
@@ -414,6 +417,10 @@ a {
                         }
                     }
                 }
+            }
+
+            .sidebar {
+                width: 20%;
             }
         }
 
@@ -522,7 +529,7 @@ a {
         background: $bg-light;
         border-radius: 5px;
         min-width: 400px;
-        padding: 1.7rem 2.2rem;
+        padding: 1.5rem 2rem;
         z-index: 9;
         color: $font-lighter;
         border: 1px solid rgba($color-flavour, 0.5);
@@ -545,10 +552,6 @@ a {
             }
         }
     }
-
-    .modal-content video{
-        min-width: 450px;
-    }
 }
 
 .pager-container {
@@ -558,26 +561,11 @@ a {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        padding-top: 15px;
         column-gap: 5px;
+        list-style: none;
         .pager-item {
             .pager-button {
-                align-self: center;
-                border: none;
-                background: $bg-main;
-                padding: 10px 15px;
-                border-radius: 5px;
-                color: $font-main;
-                svg {
-                    font-size: 2rem;
-                }
-                @include transition();
-                &:hover {
-                    cursor: pointer;
-                    color: $font-lighter;
-                    background: $bg-light;
-                    opacity: 0.7;
-                }
+                padding: 8px 10px;
             }
         }
     }
@@ -593,8 +581,7 @@ a {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 32%;
-        height: 100%;
+        width: 24%;
         color: $bg-dark;
         border-radius: 3px;
 
@@ -605,13 +592,14 @@ a {
                 text-align: center;
                 padding: 0;
                 margin: 0;
+                font-size: 0.85rem;
             }
         }
 
         .preview {
             img {
-                width: 220px;
-                height: 170px;
+                width: 170px;
+                height: 130px;
             }
         }
 
@@ -619,19 +607,19 @@ a {
             display: inherit;
             justify-content: flex-end;
             align-self: flex-end;
+            button {
+                padding: 7px 10px;
+            }
         }
     }
 }
 
 .main-box {
     cursor: pointer;
-    width: 20% !important;
-    h4 {
-        font-size: 0.85rem;
-    }
+    width: 19% !important;
     img {
-        width: 188px !important;
-        height: 155px !important;
+        width: 178px !important;
+        height: 150px !important;
     }
 }
 
@@ -654,9 +642,28 @@ a {
     .content-wrapper {
         width: 85%;
         .h-items {
+            padding-top: 1rem;
             flex-direction: column;
             .multi {
                 width: 100% !important;
+            }
+        }
+        .sidebar {
+            width: 100% !important;
+        }
+        .boxes li {
+            width: 32% !important;
+        }
+        .main-box {
+            width: 32% !important;
+        }
+        .modal-content {
+            width: 90%;
+        }
+        .modal-content.video {
+            width: 90%;
+            iframe{
+                width: 100%;
             }
         }
     }
@@ -668,12 +675,25 @@ a {
 
 @media (max-width: 740px) {
     .content-wrapper {
-        width: 75%;
+        width: 90%;
         .h-items {
+            padding-top: 1rem;
             flex-direction: column;
             .multi {
                 width: 100% !important;
             }
+        }
+        .sidebar {
+            width: 100% !important;
+        }
+        .boxes li {
+            width: 48% !important;
+        }
+        .main-box {
+            width: 48% !important;
+        }
+        .modal-content {
+            width: 90%;
         }
     }
 

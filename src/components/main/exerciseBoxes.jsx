@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import ExManager from "../cms/exManager";
 import VideoModal from "../modals/videoModal";
 
-function ExerciseBoxes({ data, ex, isCMS }) {
+function ExerciseBoxes({ data, isCMS }) {
   const dispatch = useDispatch();
   const [selectedItem, setItem] = useState(null);
   const [exModal, setExModal] = useState(false);
@@ -35,41 +35,6 @@ function ExerciseBoxes({ data, ex, isCMS }) {
   return (
     <>
       <ul className="h-list c-gap-10 r-gap-10 boxes">
-        {ex ? (
-          <li key={ex.ID} className="main-border">
-            <div className="info">
-              <h4>{ex.Name}</h4>
-            </div>
-            <div className="preview">
-              <img src={ex.PreviewURL} />
-            </div>
-            {isCMS ? (
-              <div className="functions c-gap-10">
-                <button
-                  className="btn-function"
-                  onClick={() => {
-                    onEdit(item);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn-function"
-                  onClick={() => {
-                    getConfirm(item);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
-          </li>
-        ) : (
-          ""
-        )}
-
         {data.map((item, index) => (
           <li key={index} className={`main-border ${isCMS ? "" : "main-box"}`}>
             <div className="info">
@@ -86,7 +51,7 @@ function ExerciseBoxes({ data, ex, isCMS }) {
             )}
 
             {isCMS ? (
-              <div className="functions c-gap-10">
+              <div className="functions c-gap-5">
                 <button
                   className="btn-function"
                   onClick={() => {

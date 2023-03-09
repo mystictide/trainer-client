@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterExercises } from "../../features/cms/cmsSlice";
 import Pager from "../helpers/pager";
@@ -16,11 +16,25 @@ function CMSBrowser({ filteredData }) {
   const [exModal, setExModal] = useState(false);
   const { exercise } = useSelector((state) => state.cms);
 
+  useEffect(() => {
+    if (exercise) {
+      const reqData = {
+        handle: true,
+        filter: { Keyword: keyword, page: 1, CategoryID: 0 },
+      };
+      dispatch(filterExercises(reqData));
+    }
+  }, [exercise]);
+
   const setFilter = (e, page, filter) => {
     setFilterModel(filter);
     const reqData = {
       handle: true,
-      filter: { Keyword: keyword, page: page, CategoryID: filter.category.ID },
+      filter: {
+        Keyword: keyword,
+        page: page,
+        CategoryID: filter ? filter.category.ID : 0,
+      },
     };
     dispatch(filterExercises(reqData));
   };
@@ -80,11 +94,7 @@ function CMSBrowser({ filteredData }) {
                 setFilter={setFilter}
                 filterModel={filter}
               />
-              <ExerciseBoxes
-                data={filteredData.data}
-                ex={exercise}
-                isCMS={true}
-              />
+              <ExerciseBoxes data={filteredData.data} isCMS={true} />
             </>
           ) : (
             ""

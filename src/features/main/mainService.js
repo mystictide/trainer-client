@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://localhost:475/main/";
+// const API_URL = "https://localhost:475/main/";
+const API_URL = "http://95.217.210.225:747/main/";
 const secret = import.meta.env.VITE_SECRET;
 
 const exercisesByCategory = async (reqData) => {
