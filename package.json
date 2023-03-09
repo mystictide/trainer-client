@@ -2,7 +2,7 @@
   "name": "trainer-client",
   "private": true,
   "version": "0.0.1",
-  "homepage": "https://mystictide.github.io/trainer-client",
+  "homepage": "https://mystictide.github.io/trainer-client/",
   "type": "module",
   "scripts": {
     "dev": "vite",
