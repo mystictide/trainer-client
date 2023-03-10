@@ -9,7 +9,7 @@ import Home from "./pages/main/home";
 function App() {
   return (
     <>
-      <Router basename='/'>
+      <Router>
         <div className="page-container">
           <Header />
           <Routes>
