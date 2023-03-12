@@ -529,13 +529,13 @@ a {
         background: $bg-light;
         border-radius: 5px;
         min-width: 400px;
-        padding: 1.5rem 2rem;
+        padding: 1.3rem 2rem;
         z-index: 9;
         color: $font-lighter;
         border: 1px solid rgba($color-flavour, 0.5);
 
         .heading {
-            font-size: 0.8rem;
+            font-size: 0.5rem;
             display: flex;
             flex-direction: row;
             align-items: center;

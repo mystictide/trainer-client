@@ -1,4 +1,5 @@
 import { FaTimes } from "react-icons/fa";
+import YouTube from "react-youtube";
 
 function VideoModal({ modalControl, data }) {
   return (
@@ -15,14 +16,10 @@ function VideoModal({ modalControl, data }) {
         </section>
         <section>
           <div className="v-items r-gap-10">
-            <iframe
-              width="560"
-              height="400"
-              src={data.VideoURL}
-              type="video/mp4"
-              autoPlay
-              controls
-            ></iframe>
+            <YouTube
+              videoId={data.VideoURL}
+              id={data.Name}
+            />
           </div>
         </section>
       </div>

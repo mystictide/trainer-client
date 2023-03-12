@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 
-function Search({ setFilter, setKeyword, keyword }) {
+function Search({ setFilter }) {
   const { filteredData, cats } = useSelector((state) => state.cms);
   const categoryOptions = useMemo(() => cats, []);
 
@@ -22,6 +22,10 @@ function Search({ setFilter, setKeyword, keyword }) {
     }));
   };
 
+  const resetFilter = () => {
+    setCategories("");
+  };
+
   return (
     <div className="v-items c-gap-10 r-gap-10">
       <label>Categories</label>
@@ -36,20 +40,14 @@ function Search({ setFilter, setKeyword, keyword }) {
         value={category}
         onChange={onCategoryChange}
       />
-      {/* <input
-        type="text"
-        id="keyword"
-        name="keyword"
-        value={keyword}
-        placeholder={"search by name.."}
-        className="main-border"
-        onChange={(e) => setKeyword(e.target.value)}
-      /> */}
       <button
         className="btn-function"
         onClick={(e) => setFilter(e, 1, filterModel)}
       >
         Search
+      </button>
+      <button className="btn-function" onClick={(e) => resetFilter()}>
+        Reset Filter
       </button>
     </div>
   );

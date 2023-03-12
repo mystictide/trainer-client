@@ -46,9 +46,7 @@ function CMSBrowser({ filteredData }) {
           {filteredData && filteredData.filterModel ? (
             <Search
               setFilter={setFilter}
-              setKeyword={setKeyword}
               setCategory={setCategory}
-              keyword={keyword}
               category={category}
             />
           ) : (
@@ -87,7 +85,7 @@ function CMSBrowser({ filteredData }) {
                   ? filteredData.totalItems > 0
                     ? `Found ${filteredData.totalItems} items for "${filteredData.filter.Keyword}"`
                     : `No matching results found for "${keyword}"`
-                  : `Showing latest ${filteredData.totalItems} items`}
+                  : `Found ${filteredData.totalItems} items`}
               </span>
               <Pager
                 data={filteredData}

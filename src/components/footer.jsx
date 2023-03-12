@@ -1,37 +1,21 @@
 import { GiMuscleUp } from "react-icons/gi";
-import { ImFacebook, ImInstagram, ImTwitter, ImYoutube } from "react-icons/im";
+import { ImGithub } from "react-icons/im";
 
 function Footer() {
   return (
     <footer>
       <div className="seperator half" />
       <div className="footer-wrapper content-wrapper">
-        <nav className="footer-nav">
-          <ul>
-            <li>About</li>
-            <li>Repository</li>
-          </ul>
-        </nav>
         <div className="socials">
           <ul>
-            <li>
-              <a href="a">
+            {/* <li>
+              <a href="https://twitter.com/not_orpheus" target={"_blank"}>
                 <ImTwitter />
               </a>
-            </li>
+            </li> */}
             <li>
-              <a href="b">
-                <ImFacebook />
-              </a>
-            </li>
-            <li>
-              <a href="c">
-                <ImInstagram />
-              </a>
-            </li>
-            <li>
-              <a href="d">
-                <ImYoutube />
+              <a href="https://github.com/mystictide" target={"_blank"}>
+                <ImGithub />
               </a>
             </li>
           </ul>

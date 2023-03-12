@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// const API_URL = "https://localhost:475/main/";
+// const API_URL = "http://localhost:747/main/";
 const API_URL = "https://tapi.herrguller.cc/main/";
 const secret = import.meta.env.VITE_SECRET;
 
