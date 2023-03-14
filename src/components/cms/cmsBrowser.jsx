@@ -47,6 +47,8 @@ function CMSBrowser({ filteredData }) {
             <Search
               setFilter={setFilter}
               setCategory={setCategory}
+              setKeyword={setKeyword}
+              keyword={keyword}
               category={category}
             />
           ) : (
