@@ -24,6 +24,7 @@ function Search({ setFilter, setKeyword, keyword }) {
 
   const resetFilter = () => {
     setCategories("");
+    setKeyword("");
   };
 
   return (
