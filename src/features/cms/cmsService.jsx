@@ -1,8 +1,8 @@
 import axios from "axios";
 import { storeWithDate } from "../../assets/js/helpers";
 
-const API_URL = "http://localhost:747/cms/";
-// const API_URL = "https://tapi.herrguller.cc/cms/";
+// const API_URL = "http://localhost:747/cms/";
+const API_URL = "https://tapi.herrguller.cc/cms/";
 const secret = import.meta.env.VITE_SECRET;
 
 const getCategories = async () => {
