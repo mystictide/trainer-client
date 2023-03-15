@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import mainService from "./mainService";
 
+const favourites = JSON.parse(localStorage.getItem("favourites"));
+
 const initialState = {
   exercises: null,
+  favourites: favourites ? favourites : null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -39,6 +42,9 @@ export const mainSlice = createSlice({
       state.isError = false;
       state.exercises = null;
     },
+    updateFav: (state) => {
+      state.favourites = JSON.parse(localStorage.getItem("favourites"));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -61,5 +67,5 @@ export const mainSlice = createSlice({
   },
 });
 
-export const { reset } = mainSlice.actions;
+export const { reset, updateFav} = mainSlice.actions;
 export default mainSlice.reducer;

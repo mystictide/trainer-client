@@ -5,25 +5,42 @@ export function setExpirationDate(days) {
 }
 
 export function storeWithDate(key, value, days) {
-	const item = {
-		value: value,
-		expiry: setExpirationDate(days),
-	}
-	localStorage.setItem(key, JSON.stringify(item))
+  const item = {
+    value: value,
+    expiry: setExpirationDate(days),
+  };
+  localStorage.setItem(key, JSON.stringify(item));
+}
+
+export function manageFavorites(item, remove) {
+  let arr = JSON.parse(localStorage.getItem("favourites"));
+  if (remove) {
+    arr = arr.filter((i) => i.ID !== item.ID);
+  } else {
+    if (!arr) {
+      arr = [];
+    }
+    arr.push(item);
+  }
+  if (arr.length < 1) {
+    localStorage.removeItem("favourites");
+  } else {
+    localStorage.setItem("favourites", JSON.stringify(arr));
+  }
 }
 
 export function getWithDate(key) {
-	const itemStr = localStorage.getItem(key)
-	if (!itemStr) {
-		return null
-	}
-	const item = JSON.parse(itemStr)
-	const now = new Date()
-	if (now.getTime() > item.expiry) {
-		localStorage.removeItem(key)
-		return null
-	}
-	return item.value
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) {
+    return null;
+  }
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+  if (now.getTime() > item.expiry) {
+    localStorage.removeItem(key);
+    return null;
+  }
+  return item.value;
 }
 
 export function blobToBase64(blob) {

@@ -234,6 +234,40 @@ button {
     @include button-hover-bg-color();
 }
 
+.btn-function.nav {
+    text-align: center;
+    font-size: 0.8rem;
+    width: 100px;
+    font-family: $font-bold;
+    background: darken($color: $color-flavour, $amount: 10);
+    &:hover {
+        background: $color-flavour;
+    }
+}
+
+.btn-icon {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    background: $color-flavour;
+    padding: 15px 15px;
+    font-size: 0.7rem;
+    opacity: 0.4;
+    @include button-hover-bg-color();
+    z-index: 1;
+    svg {
+        pointer-events: none;
+    }
+}
+
+.btn-icon.active {
+    @extend .btn-icon;
+    opacity: 0.9;
+    svg {
+        pointer-events: none;
+    }
+}
+
 .btn-edit {
     display: inline-block;
     border-radius: 3px;
@@ -583,9 +617,12 @@ a {
         width: 24%;
         color: $bg-dark;
         border-radius: 3px;
-
         .info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
+            min-height: 35px;
             border-bottom: 1px solid $color-flavour;
             h4 {
                 text-align: center;
@@ -661,7 +698,7 @@ a {
         }
         .modal-content.video {
             width: 90%;
-            iframe{
+            iframe {
                 width: 100%;
             }
         }

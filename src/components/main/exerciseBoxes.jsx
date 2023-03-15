@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { BsFillStarFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { manageFavorites } from "../../assets/js/helpers";
+import { updateFav } from "../../features/main/mainSlice";
 import ExManager from "../cms/exManager";
 import VideoModal from "../modals/videoModal";
 
@@ -8,6 +11,7 @@ function ExerciseBoxes({ data, isCMS }) {
   const [selectedItem, setItem] = useState(null);
   const [exModal, setExModal] = useState(false);
   const [videoModal, setVideoModal] = useState(false);
+  const { favourites } = useSelector((state) => state.main);
 
   const onEdit = (item) => {
     setItem(item);
@@ -17,6 +21,18 @@ function ExerciseBoxes({ data, isCMS }) {
   const handleClick = (item) => {
     setItem(item);
     setVideoModal(true);
+  };
+
+  const addFav = (e, item) => {
+    e.classList.toggle("active");
+    manageFavorites(item, false);
+    dispatch(updateFav());
+  };
+
+  const removeFav = (e, item) => {
+    e.classList.toggle("active");
+    manageFavorites(item, true);
+    dispatch(updateFav());
   };
 
   const getConfirm = (item) => {
@@ -70,7 +86,33 @@ function ExerciseBoxes({ data, isCMS }) {
                 </button>
               </div>
             ) : (
-              ""
+              <div className="functions c-gap-5">
+                {favourites ? (
+                  <>
+                    {favourites.some((o) => o.ID === item.ID) ? (
+                      <button
+                        className="btn-icon active"
+                        onClick={(e) => {
+                          removeFav(e.target, item);
+                        }}
+                      >
+                        <BsFillStarFill />
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </>
+                ) : (
+                  <button
+                    className="btn-icon"
+                    onClick={(e) => {
+                      addFav(e.target, item);
+                    }}
+                  >
+                    <BsFillStarFill />
+                  </button>
+                )}
+              </div>
             )}
           </li>
         ))}

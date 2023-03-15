@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import CMS from "./pages/cms";
+import Favourites from "./pages/main/favourites";
 import Home from "./pages/main/home";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cms" element={<CMS />} />
+            <Route path="/favourites" element={<Favourites />} />
           </Routes>
           <Footer />
         </div>
