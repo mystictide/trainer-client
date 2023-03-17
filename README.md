@@ -10,7 +10,7 @@ cd trainer-client
 npm install
 ```
 ### Usage
-To use Trainer-Client, start the development server:
+To run Trainer locally, start the development server:
 ```
 npm run dev
 ```
