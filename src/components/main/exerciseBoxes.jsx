@@ -99,7 +99,14 @@ function ExerciseBoxes({ data, isCMS }) {
                         <BsFillStarFill />
                       </button>
                     ) : (
-                      ""
+                      <button
+                        className="btn-icon"
+                        onClick={(e) => {
+                          addFav(e.target, item);
+                        }}
+                      >
+                        <BsFillStarFill />
+                      </button>
                     )}
                   </>
                 ) : (

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ExerciseBoxes from "../../components/main/exerciseBoxes";
@@ -5,6 +6,13 @@ import ExerciseBoxes from "../../components/main/exerciseBoxes";
 function Favourites() {
   const navigate = useNavigate();
   const { favourites } = useSelector((state) => state.main);
+
+  useEffect(() => {
+    if (!favourites) {
+      navigate("/");
+    }
+  }, [favourites]);
+
   return (
     <div className="main">
       <section className="content content-wrapper">
